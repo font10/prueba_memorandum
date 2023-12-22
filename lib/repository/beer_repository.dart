@@ -9,4 +9,13 @@ class BeerRepository {
       throw Exception(e.toString());
     }
   }
+
+  Future<List> getBeerById(int id) async {
+    try {
+      final res = await BeersService.getBeerByIdService(id);
+      return res as List;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

@@ -73,14 +73,12 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    //fetchTodo();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final cubit = context.read<BeerCubit>();
-      cubit.fetchBeer();
-    });
+    fetchTodo();
   }
 
   Future<void> fetchTodo() async {
+    final cubit = context.read<BeerCubit>();
+    cubit.fetchBeers();
     /*setState(() {
       isLoading = true;
     });*/
@@ -113,9 +111,36 @@ class _HomeState extends State<Home> {
             return BeerList(beers: beers);
           }
           ;
+
           return Container();
         },
       ),
     );
   }
 }
+
+
+/*
+ return Scaffold(
+      appBar: AppBar(title: const Text('Beers App')),
+      body: BlocBuilder<BeerCubit, BeerState>(
+        builder: (context, state) {
+          if (state is LoadingBeerState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is ErrorBeerState) {
+            showMessage(context, 'Error', Colors.red);
+          }
+          if (state is ResponseBeerState) {
+            final beers = state.beers;
+            return BeerList(beers: beers);
+          }
+          ;
+          return Container();
+        },
+      ),
+    );
+
+*/

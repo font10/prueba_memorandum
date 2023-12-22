@@ -13,3 +13,8 @@ class ResponseBeerState extends BeerState {
   final List<dynamic> beers;
   ResponseBeerState(this.beers);
 }
+
+class ResponseBeerByIdState extends BeerState {
+  final List<dynamic> beer;
+  ResponseBeerByIdState(this.beer);
+}
