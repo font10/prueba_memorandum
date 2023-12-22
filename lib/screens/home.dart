@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_memorandum/bloc/beer_bloc.dart';
+import 'package:prueba_memorandum/cubit/beer_cubit.dart';
+import 'package:prueba_memorandum/cubit/beer_state.dart';
+//import 'package:prueba_memorandum/bloc/beer_bloc.dart';
 import 'package:prueba_memorandum/services/beers_service.dart';
+import 'package:prueba_memorandum/utils/snackbar.dart';
 import 'package:prueba_memorandum/widgets/beer_list.dart';
 
-class Home extends StatefulWidget {
+/*class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
@@ -54,10 +57,9 @@ class _HomeState extends State<Home> {
           child: const Center(child: CircularProgressIndicator()),
         ));
   }
-}
+}*/
 
-
-/*class Home extends StatefulWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
@@ -71,7 +73,11 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    fetchTodo();
+    //fetchTodo();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final cubit = context.read<BeerCubit>();
+      cubit.fetchBeer();
+    });
   }
 
   Future<void> fetchTodo() async {
@@ -79,9 +85,9 @@ class _HomeState extends State<Home> {
       isLoading = true;
     });*/
     //final res = await BeersService.getAllBeersService();
-    BlocProvider.of<BeerBloc>(context).add(
-      GetAllBeersEvent(beers),
-    );
+    /*BlocProvider.of<BeerBloc>(context).add(
+      LoadJokeEvent(),
+    );*/
     /*setState(() {
       beers = res as List;
       //isLoading = false;
@@ -92,31 +98,19 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Beers App')),
-      body: BlocBuilder<BeerBloc, BeerState>(
+      body: BlocBuilder<BeerCubit, BeerState>(
         builder: (context, state) {
-          if (state is Loading) {
+          if (state is LoadingBeerState) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          },
-          if (state is BeerError) {
-            showMessage(context, 'Error fetching data', Colors.red);
           }
-          if (state is GetAllBeersState) {
-            return Visibility(
-              visible: isLoading,
-              replacement: RefreshIndicator(
-                onRefresh: fetchTodo,
-                child: Visibility(
-                  visible: beers.isNotEmpty,
-                  replacement: Center(
-                      child: Text('No Todo Item',
-                          style: Theme.of(context).textTheme.headlineMedium)),
-                  child: BeerList(beers: beers),
-                ),
-              ),
-              child: const Center(child: CircularProgressIndicator()),
-            );
+          if (state is ErrorBeerState) {
+            showMessage(context, 'Error', Colors.red);
+          }
+          if (state is ResponseBeerState) {
+            final beers = state.beers;
+            return BeerList(beers: beers);
           }
           ;
           return Container();
@@ -125,4 +119,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-*/

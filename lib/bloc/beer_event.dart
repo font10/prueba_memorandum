@@ -12,3 +12,8 @@ class GetAllBeersEvent extends BeerEvent {
   @override
   List<Object> get props => [beers];
 }
+
+class LoadJokeEvent extends BeerEvent {
+  @override
+  List<Object> get props => [];
+}
