@@ -26,23 +26,26 @@ class BeerBaseInfo extends StatelessWidget {
               ), //CircleAvatar
             ),
             const SizedBox(width: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(item['name'],
-                    style: const TextStyle(
-                      color: AppColors.blueDarkColor,
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.w400,
-                    )),
-                Text(item['tagline'],
-                    style: const TextStyle(
-                      color: AppColors.textColor,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
-                    )),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(item['name'],
+                      style: const TextStyle(
+                        color: AppColors.blueDarkColor,
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w400,
+                      )),
+                  Text(item['tagline'],
+                      style: const TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        color: AppColors.textColor,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                      )),
+                ],
+              ),
             ),
           ],
         ),

@@ -23,6 +23,11 @@ class _BeerDetailState extends State<BeerDetail> {
     fetchBeer();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   Future<void> fetchBeer() async {
     final cubit = context.read<BeerCubit>();
     cubit.fetchBeer(widget.id);
@@ -40,7 +45,13 @@ class _BeerDetailState extends State<BeerDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Beer Detail')),
+        appBar: AppBar(
+          title: const Text('Beer Detail'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(true),
+          ),
+        ),
         body: BlocBuilder<BeerCubit, BeerState>(
           builder: (context, state) {
             if (state is LoadingBeerState) {
