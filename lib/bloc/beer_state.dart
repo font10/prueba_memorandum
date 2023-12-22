@@ -3,29 +3,28 @@ part of 'beer_bloc.dart';
 @immutable
 abstract class BeerState extends Equatable {}
 
-//** When the user presses the signin or signup button the state is changed to loading first and then to Authenticated.
 class Loading extends BeerState {
   @override
   List<Object?> get props => [];
 }
 
-//** When the user is authenticated the state is changed to Authenticated.
-class Authenticated extends BeerState {
+class Initial extends BeerState {
   @override
   List<Object?> get props => [];
 }
 
-//* This is the initial state of the bloc. When the user is not authenticated the state is changed to Unauthenticated.
-class UnAuthenticated extends BeerState {
+class GetAllBeersState extends BeerState {
+  final List beers;
+  GetAllBeersState(this.beers);
+
   @override
-  List<Object?> get props => [];
+  List get props => [beers];
 }
 
-//* If any error occurs the state is changed to AuthError.
-class AuthError extends BeerState {
+class BeerError extends BeerState {
   final String error;
 
-  AuthError(this.error);
+  BeerError(this.error);
   @override
   List<Object?> get props => [error];
 }

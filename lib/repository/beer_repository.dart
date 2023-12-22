@@ -1,6 +1,11 @@
+import 'package:prueba_memorandum/services/beers_service.dart';
+
 class BeerRepository {
-  Future<void> getAllBeers() async {
-    try {} catch (e) {
+  Future<List?> getAllBeers() async {
+    try {
+      final res = await BeersService.getAllBeersService();
+      return res;
+    } catch (e) {
       throw Exception(e.toString());
     }
   }

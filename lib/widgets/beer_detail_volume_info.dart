@@ -9,6 +9,8 @@ class BeerDetailVolumeInfo extends StatelessWidget {
 
   final Map item;
 
+  // TODO Por falta de tiempo no he podido extrar los estilos en otro archivo par que sea mucho más limpio.
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -37,7 +39,7 @@ class BeerDetailVolumeInfo extends StatelessWidget {
                     )),
               ],
             ),
-            const SizedBox(width: 70),
+            const SizedBox(width: 30),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -57,7 +59,29 @@ class BeerDetailVolumeInfo extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     )),
               ],
-            )
+            ),
+            const SizedBox(width: 30),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text('Fermentation',
+                    style: TextStyle(
+                      color: AppColors.blueDarkColor,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                    )),
+                Text(
+                    item['method']['fermentation']['temp']['value'].toString() +
+                        ' ' +
+                        item['method']['fermentation']['temp']['unit']
+                            .toString(),
+                    style: const TextStyle(
+                      color: AppColors.blueDarkColor,
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.w400,
+                    )),
+              ],
+            ),
           ],
         ),
       ],

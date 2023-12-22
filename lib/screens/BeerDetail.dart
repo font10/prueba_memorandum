@@ -50,8 +50,9 @@ class _BeerDetailState extends State<BeerDetail> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BeerBaseInfo(item: item),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
                     BeerDetailVolumeInfo(item: item),
+                    const SizedBox(height: 30),
                   ],
                 ));
           },

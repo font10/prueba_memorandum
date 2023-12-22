@@ -9,6 +9,8 @@ class BeerBaseInfo extends StatelessWidget {
 
   final Map item;
 
+  // TODO Por falta de tiempo no he podido extrar los estilos en otro archivo par que sea mucho más limpio.
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,13 +46,16 @@ class BeerBaseInfo extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 15),
-        Text(item['description'],
-            style: const TextStyle(
-              color: AppColors.textColor,
-              fontSize: 12.0,
-              fontWeight: FontWeight.w300,
-            ))
+        const SizedBox(height: 35),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Text(item['description'],
+              style: const TextStyle(
+                color: AppColors.textColor,
+                fontSize: 12.0,
+                fontWeight: FontWeight.w300,
+              )),
+        )
       ],
     );
   }

@@ -21,9 +21,10 @@ class BeerCardItem extends StatelessWidget {
         navigateBeerDetail(beer['id']);
       },
       child: Card(
+        elevation: 0,
         child: ListTile(
           title: Text(beer['tagline']),
-          subtitle: Text(beer['description']),
+          subtitle: Text(beer['description'].substring(0, 40)),
           leading: CircleAvatar(
             radius: 28,
             backgroundImage: NetworkImage(beer['image_url']),

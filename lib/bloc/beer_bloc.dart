@@ -8,13 +8,14 @@ part 'beer_state.dart';
 
 class BeerBloc extends Bloc<BeerEvent, BeerState> {
   final BeerRepository beerRepository;
-  BeerBloc({required this.beerRepository}) : super(UnAuthenticated()) {
-    //* When User Presses the SignIn Button, we will send the SignInRequested Event to the AuthBloc to handle it and emit the Authenticated State if the user is authenticated
-    on<getAllBeers>((event, emit) async {
+  BeerBloc({required this.beerRepository}) : super(Initial()) {
+    on<GetAllBeersEvent>((event, emit) async {
       emit(Loading());
-      try {} catch (e) {
-        emit(AuthError(e.toString()));
-        emit(UnAuthenticated());
+      try {
+        final res = await beerRepository.getAllBeers();
+        GetAllBeersState(res as List);
+      } catch (e) {
+        emit(BeerError(e.toString()));
       }
     });
   }
