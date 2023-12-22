@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_memorandum/widgets/beer_detail_base_info.dart';
+import 'package:prueba_memorandum/widgets/beer_detail_ingredient.dart';
 import 'package:prueba_memorandum/widgets/beer_detail_volume_info.dart';
 
 class BeerDetailCardItem extends StatelessWidget {
@@ -21,7 +22,7 @@ class BeerDetailCardItem extends StatelessWidget {
             const SizedBox(height: 30),
             BeerDetailVolumeInfo(item: item),
             const SizedBox(height: 30),
-            // TODO Ingredientes no me ha salido del todo, asi que no lo pongo en hardcode.
+            BeerDetailIngredients(item: item)
           ],
         ));
   }

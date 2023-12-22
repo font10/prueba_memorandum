@@ -33,7 +33,7 @@ class BeerBaseInfo extends StatelessWidget {
                 children: [
                   Text(item['name'],
                       style: const TextStyle(
-                        color: AppColors.blueDarkColor,
+                        color: AppColors.blueColor,
                         fontSize: 22.0,
                         fontWeight: FontWeight.w400,
                       )),

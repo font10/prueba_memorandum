@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prueba_memorandum/cubit/beer_cubit.dart';
 import 'package:prueba_memorandum/cubit/beer_state.dart';
 import 'package:prueba_memorandum/screens/beer_detail.dart';
-//import 'package:prueba_memorandum/bloc/beer_bloc.dart';
-import 'package:prueba_memorandum/services/beers_service.dart';
 import 'package:prueba_memorandum/utils/snackbar.dart';
 
 class Home extends StatefulWidget {
