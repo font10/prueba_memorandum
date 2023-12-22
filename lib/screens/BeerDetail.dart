@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:prueba_memorandum/bloc/beer_bloc.dart';
 import 'package:prueba_memorandum/cubit/beer_cubit.dart';
 import 'package:prueba_memorandum/cubit/beer_state.dart';
-import 'package:prueba_memorandum/misc/colors.dart';
-import 'package:prueba_memorandum/services/beers_service.dart';
 import 'package:prueba_memorandum/utils/snackbar.dart';
-import 'package:prueba_memorandum/widgets/beer_detail_base_info.dart';
-import 'package:prueba_memorandum/widgets/beer_detail_volume_info.dart';
+import 'package:prueba_memorandum/widgets/beer_detail_list.dart';
 
 class BeerDetail extends StatefulWidget {
   final int id;
@@ -24,7 +20,6 @@ class _BeerDetailState extends State<BeerDetail> {
   @override
   void initState() {
     super.initState();
-    print(widget.id);
     fetchBeer();
   }
 
@@ -58,24 +53,7 @@ class _BeerDetailState extends State<BeerDetail> {
             }
             if (state is ResponseBeerByIdState) {
               final beer = state.beer;
-              return ListView.builder(
-                padding: const EdgeInsets.all(15),
-                itemCount: beer.length,
-                itemBuilder: (context, index) {
-                  final item = beer[index];
-                  return Card(
-                      elevation: 0,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          BeerBaseInfo(item: item),
-                          const SizedBox(height: 30),
-                          BeerDetailVolumeInfo(item: item),
-                          const SizedBox(height: 30),
-                        ],
-                      ));
-                },
-              );
+              return BeerDetailList(beer: beer);
             }
             ;
             return Container();
