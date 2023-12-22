@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_memorandum/misc/colors.dart';
 import 'package:prueba_memorandum/services/beers_service.dart';
+import 'package:prueba_memorandum/widgets/beer_detail_base_info.dart';
+import 'package:prueba_memorandum/widgets/beer_detail_volume_info.dart';
 
 class BeerDetail extends StatefulWidget {
   final int id;
@@ -26,7 +28,7 @@ class _BeerDetailState extends State<BeerDetail> {
       isLoading = true;
     });
     final res = await BeersService.getBeerByIdService(widget.id);
-    print(res);
+
     setState(() {
       beer = res as List;
       isLoading = false;
@@ -38,29 +40,18 @@ class _BeerDetailState extends State<BeerDetail> {
     return Scaffold(
         appBar: AppBar(title: const Text('Beer Detail')),
         body: ListView.builder(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(15),
           itemCount: beer.length,
           itemBuilder: (context, index) {
             final item = beer[index];
             return Card(
                 elevation: 0,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 108,
-                      child: CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(item['image_url']), //NetworkImage
-                        radius: 100,
-                      ), //CircleAvatar
-                    ),
-                    SizedBox(height: 18),
-                    Text(item['name'],
-                        style: const TextStyle(
-                          color: AppColors.blueDarkColor,
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400,
-                        )),
+                    BeerBaseInfo(item: item),
+                    const SizedBox(height: 20),
+                    BeerDetailVolumeInfo(item: item),
                   ],
                 ));
           },
