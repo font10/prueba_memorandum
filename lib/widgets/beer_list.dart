@@ -9,6 +9,8 @@ class BeerList extends StatelessWidget {
 
   final List beers;
 
+  // TODO Me falto tiempo, pero deberia tener un modelo acorde a la respuesta de la API
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
