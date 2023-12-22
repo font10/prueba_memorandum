@@ -31,15 +31,6 @@ class _BeerDetailState extends State<BeerDetail> {
   Future<void> fetchBeer() async {
     final cubit = context.read<BeerCubit>();
     cubit.fetchBeer(widget.id);
-    /*setState(() {
-      isLoading = true;
-    });
-    final res = await BeersService.getBeerByIdService(widget.id);
-
-    setState(() {
-      beer = res as List;
-      isLoading = false;
-    });*/
   }
 
   @override
@@ -48,7 +39,7 @@ class _BeerDetailState extends State<BeerDetail> {
         appBar: AppBar(
           title: const Text('Beer Detail'),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.of(context).pop(true),
           ),
         ),

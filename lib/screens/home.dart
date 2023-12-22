@@ -27,17 +27,6 @@ class _HomeState extends State<Home> {
   Future<void> fetchTodo() async {
     final cubit = context.read<BeerCubit>();
     cubit.fetchBeers();
-    /*setState(() {
-      isLoading = true;
-    });*/
-    //final res = await BeersService.getAllBeersService();
-    /*BlocProvider.of<BeerBloc>(context).add(
-      LoadJokeEvent(),
-    );*/
-    /*setState(() {
-      beers = res as List;
-      //isLoading = false;
-    });*/
   }
 
   void navigateBeerDetail(int id) async {
@@ -94,6 +83,8 @@ class _HomeState extends State<Home> {
 }
 
 
+//? Intento con Bloc pero se me quedaba cargando, creo es fallo del Event, pero no encontre el fallo, deje los archivos
+//? para mirar lo que hice de Bloc, ahora esta funcionando con Cubit.
 /*
  return Scaffold(
       appBar: AppBar(title: const Text('Beers App')),

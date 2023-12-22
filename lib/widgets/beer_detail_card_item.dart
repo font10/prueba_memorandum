@@ -21,6 +21,7 @@ class BeerDetailCardItem extends StatelessWidget {
             const SizedBox(height: 30),
             BeerDetailVolumeInfo(item: item),
             const SizedBox(height: 30),
+            // TODO Ingredientes no me ha salido del todo, asi que no lo pongo en hardcode.
           ],
         ));
   }

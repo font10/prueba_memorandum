@@ -9,7 +9,7 @@ part 'beer_state.dart';
 class BeerBloc extends Bloc<BeerEvent, BeerState> {
   final BeerRepository beerRepository;
   BeerBloc({required this.beerRepository}) : super(Initial()) {
-    on<LoadJokeEvent>((event, emit) async {
+    on<GetAllBeersEvent>((event, emit) async {
       emit(Loading());
       try {
         final res = await beerRepository.getAllBeers();
