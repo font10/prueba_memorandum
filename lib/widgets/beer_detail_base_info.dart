@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_memorandum/misc/colors.dart';
+import 'package:prueba_memorandum/models/beer_model.dart';
 
 class BeerBaseInfo extends StatelessWidget {
+  final BeerModel item;
   const BeerBaseInfo({
     super.key,
     required this.item,
   });
-
-  final Map item;
 
   // TODO Por falta de tiempo no he podido extrar los estilos en otro archivo par que sea mucho más limpio.
 
@@ -21,7 +21,7 @@ class BeerBaseInfo extends StatelessWidget {
             CircleAvatar(
               radius: 50,
               child: CircleAvatar(
-                backgroundImage: NetworkImage(item['image_url']), //NetworkImage
+                backgroundImage: NetworkImage(item.imageUrl!), //NetworkImage
                 radius: 100,
               ), //CircleAvatar
             ),
@@ -31,13 +31,13 @@ class BeerBaseInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(item['name'],
+                  Text(item.name!,
                       style: const TextStyle(
                         color: AppColors.blueColor,
                         fontSize: 22.0,
                         fontWeight: FontWeight.w400,
                       )),
-                  Text(item['tagline'],
+                  Text(item.tagline!,
                       style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
                         color: AppColors.textColor,
@@ -52,7 +52,7 @@ class BeerBaseInfo extends StatelessWidget {
         const SizedBox(height: 35),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Text(item['description'],
+          child: Text(item.description!,
               style: const TextStyle(
                 color: AppColors.textColor,
                 fontSize: 12.0,

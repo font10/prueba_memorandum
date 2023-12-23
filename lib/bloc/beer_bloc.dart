@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:prueba_memorandum/models/beer_model.dart';
 import 'package:prueba_memorandum/repository/beer_repository.dart';
 
 part 'beer_event.dart';
@@ -13,7 +14,7 @@ class BeerBloc extends Bloc<BeerEvent, BeerState> {
       emit(Loading());
       try {
         final res = await beerRepository.getAllBeers();
-        emit(GetAllBeersState(res as List));
+        emit(GetAllBeersState(res as List<BeerModel>));
       } catch (e) {
         emit(BeerError(e.toString()));
       }
@@ -23,7 +24,7 @@ class BeerBloc extends Bloc<BeerEvent, BeerState> {
       emit(Loading());
       try {
         final res = await beerRepository.getBeerById(event.id);
-        emit(GetBeerByIdState(res as List));
+        emit(GetBeerByIdState(res as List<BeerModel>));
       } catch (e) {
         emit(BeerError(e.toString()));
       }

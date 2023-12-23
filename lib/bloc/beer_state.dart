@@ -14,7 +14,7 @@ class Initial extends BeerState {
 }
 
 class GetAllBeersState extends BeerState {
-  final List beers;
+  final List<BeerModel> beers;
   GetAllBeersState(this.beers);
 
   @override
@@ -22,7 +22,7 @@ class GetAllBeersState extends BeerState {
 }
 
 class GetBeerByIdState extends BeerState {
-  final List beer;
+  final List<BeerModel> beer;
   GetBeerByIdState(this.beer);
 
   @override

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prueba_memorandum/bloc/beer_bloc.dart';
-//import 'package:prueba_memorandum/cubit/beer_cubit.dart';
 import 'package:prueba_memorandum/screens/beer_detail.dart';
 import 'package:prueba_memorandum/utils/snackbar.dart';
 
@@ -58,15 +57,15 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) {
                   final beer = beers[index];
                   return InkWell(
-                    onTap: () => navigateBeerDetail(beer['id']),
+                    onTap: () => navigateBeerDetail(beer.id!),
                     child: Card(
                       elevation: 0,
                       child: ListTile(
-                        title: Text(beer['tagline']),
-                        subtitle: Text(beer['description'].substring(0, 40)),
+                        title: Text(beer.tagline!),
+                        subtitle: Text(beer.description!.substring(0, 40)),
                         leading: CircleAvatar(
                           radius: 28,
-                          backgroundImage: NetworkImage(beer['image_url']),
+                          backgroundImage: NetworkImage(beer.imageUrl!),
                         ),
                       ),
                     ),

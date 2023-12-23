@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_memorandum/misc/colors.dart';
+import 'package:prueba_memorandum/models/beer_model.dart';
 
 class BeerDetailVolumeInfo extends StatelessWidget {
   const BeerDetailVolumeInfo({
@@ -7,7 +8,7 @@ class BeerDetailVolumeInfo extends StatelessWidget {
     required this.item,
   });
 
-  final Map item;
+  final BeerModel item;
 
   // TODO Por falta de tiempo no he podido extrar los estilos en otro archivo par que sea mucho más limpio.
 
@@ -29,9 +30,9 @@ class BeerDetailVolumeInfo extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     )),
                 Text(
-                    item['volume']['value'].toString() +
+                    item.volume!.value!.toString() +
                         ' ' +
-                        item['volume']['unit'].toString(),
+                        item.volume!.unit!.toString(),
                     style: const TextStyle(
                       color: AppColors.blueDarkColor,
                       fontSize: 13.0,
@@ -50,9 +51,9 @@ class BeerDetailVolumeInfo extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     )),
                 Text(
-                    item['boil_volume']['value'].toString() +
+                    item.boilVolume!.value!.toString() +
                         ' ' +
-                        item['boil_volume']['unit'].toString(),
+                        item.boilVolume!.unit!.toString(),
                     style: const TextStyle(
                       color: AppColors.blueDarkColor,
                       fontSize: 13.0,
@@ -71,10 +72,9 @@ class BeerDetailVolumeInfo extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     )),
                 Text(
-                    item['method']['fermentation']['temp']['value'].toString() +
+                    item.method!.fermentation!.temp!.value!.toString() +
                         ' ' +
-                        item['method']['fermentation']['temp']['unit']
-                            .toString(),
+                        item.method!.fermentation!.temp!.unit!.toString(),
                     style: const TextStyle(
                       color: AppColors.blueDarkColor,
                       fontSize: 13.0,
