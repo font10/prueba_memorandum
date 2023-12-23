@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_memorandum/cubit/beer_cubit.dart';
-import 'package:prueba_memorandum/cubit/beer_state.dart';
+import 'package:prueba_memorandum/bloc/beer_bloc.dart';
+//import 'package:prueba_memorandum/cubit/beer_cubit.dart';
 import 'package:prueba_memorandum/screens/beer_detail.dart';
 import 'package:prueba_memorandum/utils/snackbar.dart';
 
@@ -23,8 +23,10 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> fetchTodo() async {
-    final cubit = context.read<BeerCubit>();
-    cubit.fetchBeers();
+    /*final cubit = context.read<BeerCubit>();
+    cubit.fetchBeers();*/
+    final beerBloc = BlocProvider.of<BeerBloc>(context);
+    beerBloc.add(GetAllBeersEvent());
   }
 
   void navigateBeerDetail(int id) async {
@@ -38,17 +40,17 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Beers App')),
-      body: BlocBuilder<BeerCubit, BeerState>(
+      body: BlocBuilder<BeerBloc, BeerState>(
         builder: (context, state) {
-          if (state is LoadingBeerState) {
+          if (state is Initial || state is Loading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (state is ErrorBeerState) {
+          if (state is BeerError) {
             showMessage(context, 'Error', Colors.red);
           }
-          if (state is ResponseBeerState) {
+          if (state is GetAllBeersState) {
             final beers = state.beers;
             return ListView.builder(
                 padding: const EdgeInsets.all(12),
@@ -79,31 +81,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
-//? Intento con Bloc pero se me quedaba cargando, creo es fallo del Event, pero no encontre el fallo, deje los archivos
-//? para mirar lo que hice de Bloc, ahora esta funcionando con Cubit.
-/*
- return Scaffold(
-      appBar: AppBar(title: const Text('Beers App')),
-      body: BlocBuilder<BeerCubit, BeerState>(
-        builder: (context, state) {
-          if (state is LoadingBeerState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is ErrorBeerState) {
-            showMessage(context, 'Error', Colors.red);
-          }
-          if (state is ResponseBeerState) {
-            final beers = state.beers;
-            return BeerList(beers: beers);
-          }
-          ;
-          return Container();
-        },
-      ),
-    );
-
-*/

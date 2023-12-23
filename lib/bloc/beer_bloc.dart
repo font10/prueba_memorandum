@@ -18,5 +18,15 @@ class BeerBloc extends Bloc<BeerEvent, BeerState> {
         emit(BeerError(e.toString()));
       }
     });
+
+    on<GetBeerByIdEvent>((event, emit) async {
+      emit(Loading());
+      try {
+        final res = await beerRepository.getBeerById(event.id);
+        emit(GetBeerByIdState(res as List));
+      } catch (e) {
+        emit(BeerError(e.toString()));
+      }
+    });
   }
 }

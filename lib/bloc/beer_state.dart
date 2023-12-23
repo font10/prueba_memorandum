@@ -21,6 +21,14 @@ class GetAllBeersState extends BeerState {
   List get props => [beers];
 }
 
+class GetBeerByIdState extends BeerState {
+  final List beer;
+  GetBeerByIdState(this.beer);
+
+  @override
+  List get props => [beer];
+}
+
 class BeerError extends BeerState {
   final String error;
 

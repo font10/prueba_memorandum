@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_memorandum/cubit/beer_cubit.dart';
-import 'package:prueba_memorandum/cubit/beer_state.dart';
+import 'package:prueba_memorandum/bloc/beer_bloc.dart';
 import 'package:prueba_memorandum/utils/snackbar.dart';
 import 'package:prueba_memorandum/widgets/beer_detail_list.dart';
 
@@ -29,8 +28,10 @@ class _BeerDetailState extends State<BeerDetail> {
   }
 
   Future<void> fetchBeer() async {
-    final cubit = context.read<BeerCubit>();
-    cubit.fetchBeer(widget.id);
+    /*final cubit = context.read<BeerBloc>();
+    cubit.fetchBeer(widget.id);*/
+    final beerBloc = BlocProvider.of<BeerBloc>(context);
+    beerBloc.add(GetBeerByIdEvent(id: widget.id));
   }
 
   @override
@@ -43,17 +44,17 @@ class _BeerDetailState extends State<BeerDetail> {
             onPressed: () => Navigator.of(context).pop(true),
           ),
         ),
-        body: BlocBuilder<BeerCubit, BeerState>(
+        body: BlocBuilder<BeerBloc, BeerState>(
           builder: (context, state) {
-            if (state is LoadingBeerState) {
+            if (state is Initial || state is Loading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            if (state is ErrorBeerState) {
+            if (state is BeerError) {
               showMessage(context, 'Error', Colors.red);
             }
-            if (state is ResponseBeerByIdState) {
+            if (state is GetBeerByIdState) {
               final beer = state.beer;
               return BeerDetailList(beer: beer);
             }

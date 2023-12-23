@@ -6,9 +6,12 @@ abstract class BeerEvent extends Equatable {
 }
 
 class GetAllBeersEvent extends BeerEvent {
-  GetAllBeersEvent(this.beers);
-  final List beers;
+  List<Object> get props => [];
+}
 
-  @override
-  List<Object> get props => [beers];
+class GetBeerByIdEvent extends BeerEvent {
+  final int id;
+  GetBeerByIdEvent({required this.id});
+
+  List<Object> get props => [];
 }
